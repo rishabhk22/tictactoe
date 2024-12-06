@@ -2,7 +2,7 @@
 import numpy as np
 import random
 
-def new_board(): # make a new board
+def new_board(): # make a new board that is empty
      new_board = np.full((3,3),'' ,dtype = str)
      return new_board
 
@@ -24,7 +24,7 @@ def init_game():
 
 
 
-def win_check(board):
+def win_check(board): #check the winning conditions
     for row in board: # check rows for X
         if row[0]==row[1]==row[2]=='X':
             return("X won")
@@ -37,13 +37,13 @@ def win_check(board):
     for col in range(3):# check columns for O
         if board[0][col]==board[1][col] == board[2][col]== 'O':
             return("O won")
-    if board[0][0]==board[1][1] == board[2][2]== 'X': # check diagonal for X
+    if board[0][0]==board[1][1] == board[2][2]== 'X': # check right diagonal for X
             return("X won")
-    if board[0][0]==board[1][1] == board[2][2]== 'O': # check diagonal for O
+    if board[0][0]==board[1][1] == board[2][2]== 'O': # check right diagonal for O
            return("O won")
-    if board[0][2]==board[1][1] == board[2][0]== 'X': # check diagonal for X
+    if board[0][2]==board[1][1] == board[2][0]== 'X': # check left diagonal for X
             return("X won")
-    if board[0][2]==board[1][1] == board[2][0]== 'O': # check diagonal for O
+    if board[0][2]==board[1][1] == board[2][0]== 'O': # check left diagonal for O
            return("O won")
     
     if np.all(board != ''):
@@ -55,14 +55,14 @@ def win_check(board):
 
 #print(win_check(board))
 
-def player_move(board, player_symbol,player_name):
+def player_move(board, player_symbol,player_name): #function for user to make move and input position
      while True:
           try:
                print(f"{player_name}'s turn ({player_symbol}):")
-               row= int(input(f"Enter the row (0-2)"))
-               col= int(input(f"Enter the column (0-2)"))
+               row= int(input(f"Enter the row (0-2)")) #taking row number input
+               col= int(input(f"Enter the column (0-2)")) #taking column input
                if board[row][col]!= '':
-                    print("Please choose different position; this is already taken")
+                    print("Please choose different position; this is already taken") # check if the position is available or not
                else:
                     board[row][col] = player_symbol
                     break
@@ -90,7 +90,7 @@ def game():
                print(result)
                break
           
-          if current_player_symbol == player1_symbol:
+          if current_player_symbol == player1_symbol: #swap users alternatively
                current_player_symbol = player2_symbol
                current_player_name = player2_name
 
@@ -99,7 +99,7 @@ def game():
                current_player_name = player1_name
 
 
-game()
+game() #call the function to start
                 
 
 
